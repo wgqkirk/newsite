@@ -6,91 +6,8 @@
     <bookmark url="file://$PROJECT_DIR$/blog/static/css/style.css" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e741aa76-8585-40fc-ae8e-ab7f9c2bc537" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/img/1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/img/tick.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0005_admin.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0006_auto_20171208_1543.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0007_auto_20171208_1550.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0008_auto_20171208_1847.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0009_auto_20171208_1850.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0010_auto_20171208_1856.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0011_auto_20171208_1902.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0012_auto_20171208_1903.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0013_auto_20171210_1513.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0014_auto_20171210_1853.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0015_testimgsrc.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0016_testimgsrc_name.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0017_auto_20180314_1639.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0018_auto_20180327_2022.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0019_remove_admin_email.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0020_auto_20180402_1504.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0021_remove_user_now_uid.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0022_user_now_uid.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0023_user_now_choice.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0024_weeek3_week1_week2_week4_week5_week6_week7_week8.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0025_auto_20180403_1254.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0026_auto_20180403_1609.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0027_auto_20180403_1610.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0028_auto_20180404_1557.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0029_weekly_info_week0.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0030_auto_20180410_1144.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/migrations/0031_auto_20180410_1319.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/css/bootstrap-datetimepicker.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/css/popup-box.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/js/bootstrap-datetimepicker.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/js/bootstrap-datetimepicker.zh-CN.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/js/coach_inputdata.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/js/jquery.magnific-popup.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/js/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/js/modernizr.custom.53451.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/static/js/moment-with-locales.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templatetags/__init__.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/blog/templatetags/funcs.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/action.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin_coach.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin_coach_edit.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin_index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin_item.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/admin_item_edit.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/ajaxtest.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/coach_index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/coach_inputdata.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/coach_search_result.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/coach_search_student.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/coach_student.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/coach_student_edit.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/coachs.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/error404.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/imgtest.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/imgtestajax.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/jsonp.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/logtest.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/mysetting.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/nologin_index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/register.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/singel_chart.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/useredit.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/usersearchresult.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/utils/pageation.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/templates/content.html" afterPath="$PROJECT_DIR$/templates/system.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/templates/contentpost.html" afterPath="$PROJECT_DIR$/templates/coach.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/templates/tag.html" afterPath="$PROJECT_DIR$/templates/data.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/admin.py" afterPath="$PROJECT_DIR$/blog/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/models.py" afterPath="$PROJECT_DIR$/blog/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/static/css/wangguoqianghoutai.css" afterPath="$PROJECT_DIR$/blog/static/css/wangguoqianghoutai.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/blog/views.py" afterPath="$PROJECT_DIR$/blog/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newsite/settings.py" afterPath="$PROJECT_DIR$/newsite/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/newsite/urls.py" afterPath="$PROJECT_DIR$/newsite/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/login.html" afterPath="$PROJECT_DIR$/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/user.html" afterPath="$PROJECT_DIR$/templates/user.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/usersearch.html" afterPath="$PROJECT_DIR$/templates/usersearch.html" />
+    <list default="true" id="e741aa76-8585-40fc-ae8e-ab7f9c2bc537" name="Default" comment="0426test">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -184,7 +101,7 @@
         <entry file="file://$PROJECT_DIR$/templates/singel_chart.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
-              <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+              <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -282,6 +199,12 @@
     </dirStrings>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="wangguoqiang &lt;843805244@qq.com&gt;" />
+      </list>
+    </option>
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="PUSH_TAGS">
       <GitPushTagMode />
@@ -492,6 +415,14 @@
       <option name="presentableId" value="Default" />
       <updated>1512357529526</updated>
     </task>
+    <task id="LOCAL-00001" summary="0426test">
+      <created>1524753283374</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1524753283374</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -567,6 +498,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="0426test" />
+    <option name="LAST_COMMIT_MESSAGE" value="0426test" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="3" />
@@ -578,6 +513,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="139" column="0" lean-forward="true" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -630,6 +566,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="128" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -644,6 +581,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2299">
           <caret line="11" column="28" lean-forward="true" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -686,6 +624,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
           <caret line="15" column="14" lean-forward="false" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -715,6 +654,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-551">
           <caret line="85" column="67" lean-forward="false" selection-start-line="85" selection-start-column="61" selection-end-line="85" selection-end-column="67" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -729,6 +669,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3933">
           <caret line="197" column="10" lean-forward="true" selection-start-line="197" selection-start-column="10" selection-end-line="197" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -819,6 +760,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
           <caret line="144" column="62" lean-forward="true" selection-start-line="144" selection-start-column="62" selection-end-line="144" selection-end-column="62" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -833,6 +775,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -855,6 +798,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
           <caret line="71" column="40" lean-forward="true" selection-start-line="71" selection-start-column="40" selection-end-line="71" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -938,7 +882,7 @@
     <entry file="file://$PROJECT_DIR$/templates/singel_chart.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
-          <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
+          <caret line="5" column="7" lean-forward="false" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="7" />
           <folding />
         </state>
       </provider>
