@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板页面</title>
+    <style>
+        .page-header{
+            height: 100px;
+            background-color: rebeccapurple;
+        }
+        .page-body .meun{
+            height:500px;
+            background-color: antiquewhite;
+            float: left;
+            width: 20%;
+        }
+        .page-body .content{
+            height:500px;
+            background-color: cornflowerblue;
+            float: left;
+            width: 80%;
+        }
+        .page-footer{
+            height: 30px;
+            background-color: aquamarine;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="page-header"></div>
+    <div class="page-body">
+        <div class="meun">
+            <a href='/so/'>订单</a>
+            <a href="/so1/">购物车</a>
+        </div>
+    {% block content %}
+        <div class="content">
+            基本页面
+        </div>
+    {% endblock %}
+    </div>
+    <div class="page-footer"></div>
+</div>
+</body>
+</html>

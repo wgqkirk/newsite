@@ -1,0 +1,250 @@
+{% load funcs %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico" />
+{#    <script type="text/javascript" src="js/less.min.js" ></script>#}
+
+    <title>减肥班学员管理系统</title>
+
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/bootswatch.min.css" />
+    <link rel="stylesheet" href="../static/css/wangguoqianghoutai.css" />
+</head>
+<style>
+      td>input {
+      border: 0px;
+      background-color: inherit;
+      outline: none;
+      width: 100%;
+      }
+    th.username{
+        width: 20%;
+    }
+    th.weight{
+        width: 20%;
+    }
+    .glyphicon-arrow-down{
+        color: green;
+        font-size: 10px;
+    }
+
+</style>
+<body class="index">
+<nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/coach_index/">减肥班学员管理系统</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            		<li><a href="/coach_index/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;首页</a></li>
+                    <li><a href="/coach_student/"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;我的学员</a></li>
+            		<li class="active"><a href="/coach_inputdata/"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;学员数据更新</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+                <li style="padding-top: 13px;color: white;">欢迎，教练：</li>
+          		<li class="dropdown">
+				  <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     {{ pageusername }}
+
+				</a>
+
+				</li>
+          	<li><a href="/signout" style="padding-right: 3px;"><span class="glyphicon glyphicon-off">&nbsp;退出</span></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+<div class="container">
+    		<div class="row">
+    			<div class="col-md-6">
+						<div class="panel panel-default">
+
+						  <div class="panel-heading">
+
+						  <h3 class="panel-title">第一周完结数据<span><a onclick="fun1()" class="button btn-default pull-right" style="text-decoration: none" title="保存">保存修改</a></span></h3>
+
+						  </div>
+						  	<table class="table table-responsive table-striped table-bordered" id="week1">
+						  		<thead>
+						  			<tr><th class="username">用户名</th><th class="weight">体重</th><th class="beizhu">备注</th></tr>
+						  		</thead>
+						  		<tbody>
+                                    {% for i in user_list %}
+                                        <tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" name="weight" value="{% if not i.week1 %}{% else %}{{ i.week1 }}{% endif %}">{% if i.week1 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week0|func2:i.week1 }}</span>
+                                        {% endif %}
+                                    </td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week1_suggest %}{% else %}{{ i.week1_suggest }}{% endif %}">
+                                    </td></tr>
+                                    {% endfor %}
+						  		</tbody>
+						  	</table>
+
+						</div>
+
+    			</div>
+    			<div class="col-md-6">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						<h3 class="panel-title">第二周完结数据<span><a onclick="fun2()" class="button btn-default pull-right" style="text-decoration: none" title="保存">保存修改</a></span></h3>
+						  </div>
+						  	<table class="table table-responsive table-striped table-bordered" id="week2">
+						  		<thead>
+						  			<tr><th class="username">用户名</th><th class="weight">体重</th><th class="beizhu">备注</th></tr>
+						  		</thead>
+						  		<tbody>
+                                    {% for i in user_list %}
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week2 %}{% else %}{{ i.week2 }}{% endif %}">{% if i.week2 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week1|func2:i.week2 }}</span>
+                                        {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week2_suggest %}{% else %}{{ i.week2_suggest }}{% endif %}">
+                                    </td></tr>
+                                    {% endfor %}
+						  		</tbody>
+						  	</table>
+						</div>
+    			</div>
+            </div>
+    <div class="row">
+    			<div class="col-md-6">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						<h3 class="panel-title">第三周完结数据<span><a onclick="fun3()" class="button btn-default pull-right" style="text-decoration: none" title="保存">保存修改</a></span></h3>
+						  </div>
+						  	<table class="table table-responsive table-striped table-bordered" id="week3">
+						  		<thead>
+						  			<tr><th class="username">用户名</th><th class="weight">体重</th><th class="beizhu">备注</th></tr>
+						  		</thead>
+						  		<tbody>
+                                    {% for i in user_list %}
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week3 %}{% else %}{{ i.week3 }}{% endif %}">{% if i.week3 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week2|func2:i.week3 }}</span>
+                                        {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week3_suggest %}{% else %}{{ i.week3_suggest }}{% endif %}">
+                                    </td></tr>
+                                    {% endfor %}
+						  		</tbody>
+						  	</table>
+						</div>
+    			</div>
+    			<div class="col-md-6">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						<h3 class="panel-title">第四周完结数据<span><a onclick="fun4()" class="button btn-default pull-right" style="text-decoration: none" title="保存">保存修改</a></span></h3>
+						  </div>
+						  	<table class="table table-responsive table-striped table-bordered" id="week4">
+						  		<thead>
+						  			<tr><th class="username">用户名</th><th class="weight">体重</th><th class="beizhu">备注</th></tr>
+						  		</thead>
+						  		<tbody>
+                                    {% for i in user_list %}
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week4 %}{% else %}{{ i.week4 }}{% endif %}">{% if i.week4 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week3|func2:i.week4 }}</span>
+                                        {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week4_suggest %}{% else %}{{ i.week4_suggest }}{% endif %}">
+                                    </td></tr>
+                                    {% endfor %}
+						  		</tbody>
+						  	</table>
+						</div>
+    			</div>
+    </div>
+    <div class="row">
+    			<div class="col-md-6">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						<h3 class="panel-title">第五周完结数据<span><a onclick="fun5()" class="button btn-default pull-right" style="text-decoration: none" title="保存">保存修改</a></span></h3>
+						  </div>
+						  	<table class="table table-responsive table-striped table-bordered" id="week5">
+						  		<thead>
+						  			<tr><th class="username">用户名</th><th class="weight">体重</th><th class="beizhu">备注</th></tr>
+						  		</thead>
+						  		<tbody>
+                                    {% for i in user_list %}
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week5 %}{% else %}{{ i.week5 }}{% endif %}">{% if i.week5 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week4|func2:i.week5 }}</span>
+                                        {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week5_suggest %}{% else %}{{ i.week5_suggest }}{% endif %}">
+                                    </td></tr>
+                                    {% endfor %}
+						  		</tbody>
+						  	</table>
+						</div>
+    			</div>
+    			<div class="col-md-6">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						<h3 class="panel-title">第六周完结数据<span><a onclick="fun6()" class="button btn-default pull-right" style="text-decoration: none" title="保存">保存修改</a></span></h3>
+						  </div>
+						  	<table class="table table-responsive table-striped table-bordered" id="week6">
+						  		<thead>
+						  			<tr><th class="username">用户名</th><th class="weight">体重</th><th class="beizhu">备注</th></tr>
+						  		</thead>
+						  		<tbody>
+                                    {% for i in user_list %}
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week6 %}{% else %}{{ i.week6 }}{% endif %}">{% if i.week6 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week5|func2:i.week6 }}</span>
+                                        {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week6_suggest %}{% else %}{{ i.week6_suggest }}{% endif %}">
+                                    </td></tr>
+                                    {% endfor %}
+						  		</tbody>
+						  	</table>
+						</div>
+    			</div>
+    </div>
+    <div class="row">
+    			<div class="col-md-6">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						<h3 class="panel-title">第七周完结数据<span><a onclick="fun7()" class="button btn-default pull-right" style="text-decoration: none" title="保存">保存修改</a></span></h3>
+						  </div>
+						  	<table class="table table-responsive table-striped table-bordered" id="week7">
+						  		<thead>
+						  			<tr><th class="username">用户名</th><th class="weight">体重</th><th class="beizhu">备注</th></tr>
+						  		</thead>
+						  		<tbody>
+                                    {% for i in user_list %}
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week7 %}{% else %}{{ i.week7 }}{% endif %}">{% if i.week7 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week6|func2:i.week7 }}</span>
+                                        {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week7_suggest %}{% else %}{{ i.week7_suggest }}{% endif %}">
+                                    </td></tr>
+                                    {% endfor %}
+						  		</tbody>
+						  	</table>
+						</div>
+    			</div>
+    			<div class="col-md-6">
+						<div class="panel panel-default">
+						  <div class="panel-heading">
+						<h3 class="panel-title">第八周完结数据<span><a onclick="fun8()" class="button btn-default pull-right" style="text-decoration: none" title="保存">保存修改</a></span></h3>
+						  </div>
+						  	<table class="table table-responsive table-striped table-bordered" id="week8">
+						  		<thead>
+						  			<tr><th class="username">用户名</th><th class="weight">体重</th><th class="beizhu">备注</th></tr>
+						  		</thead>
+						  		<tbody>
+                                    {% for i in user_list %}
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week8 %}{% else %}{{ i.week8 }}{% endif %}">{% if i.week8 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week7|func2:i.week8 }}</span>
+                                        {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week8_suggest %}{% else %}{{ i.week8_suggest }}{% endif %}">
+                                    </td></tr>
+                                    {% endfor %}
+						  		</tbody>
+						  	</table>
+						</div>
+    			</div>
+    </div>
+    </div>
+    </div>
+</div>
+</body>
+
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/js/Chart.js" ></script>
+{#    <script type="text/javascript" src="../static/js/script.js" ></script>#}
+    <script type="text/javascript" src="../static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../static/js/coach_inputdata.js"></script>
+
+</html>

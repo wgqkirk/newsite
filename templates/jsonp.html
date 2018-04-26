@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonp</title>
+</head>
+<body>
+<h1>jsonp</h1>
+
+<input type="button" onclick="jsonpcross()" value="jsonp跨域">
+
+</body>
+<script>
+    var scr=null
+    function jsonpcross() {
+        scr=document.createElement('script')
+        scr.src='http://www.jxntv.cn/data/jmd-jxtv2.html?callback=list&_=1454376870403'
+        document.head.appendChild(scr)
+    }
+    function list(arg) {
+        console.log(arg)
+
+        document.head.removeChild(scr)
+    }
+</script>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>上传</title>
+
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script type="text/javascript" src="../static/js/jquery-3.2.1.min.js" ></script>
+    <style>
+        .showimg img{
+            width: 200px;
+            height: 150px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div>
+    <iframe id="ifr" src=""></iframe>
+    <input type="text" id="content" name="content" maxlength="200"/>
+    <input type="button" onclick="ifr()" value="偷偷">
+</div>
+
+
+
+<hr>
+<h2>ajax提交</h2>
+
+<label>名称</label><input type="text" id="name" name="name" maxlength="200"/>
+<input type="file" name="img" id="img">
+<input type="button" value="提交" onclick="postimg()">
+
+
+<div class="showimg">
+</div>
+</body>
+<script>
+    function postimg() {
+        dic=new FormData();
+        dic.append('name',document.getElementById('name').value)
+        //console.log(dic)
+        dic.append('img',document.getElementById('img').files[0])
+        $.ajax({
+            url:'/imgtestajax.html',
+            data:dic,
+            type:'POST',
+            processData:false,
+            contentType:false,
+            dataType:'JSON',
+            success:function (data) {
+                if (data.status){
+                    var img=document.createElement('img')
+                   // console.log(data.path)
+                    img.src=data.path
+                    $('.showimg').append(img)
+                }
+            }
+        })
+    }
+
+    function ifr() {
+        var b=$('#content').val()
+        console.log(b)
+        $('#ifr').attr('src',b)
+
+
+    }
+</script>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajaxtest</title>
+</head>
+<body>
+<input type="text" /><br>
+<span id="alert"></span><br>
+<button onclick="func1()">点击</button>
+
+
+</body>
+<script>
+    function func1() {
+        //创建对象
+        var xmlhttp=creatxmlhttprequest()
+        //实时监听
+        xmlhttp.onreadystatechange=function () {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                var data=xmlhttp.responseText
+                document.getElementById('alert').innerText=data
+            }
+        }
+        //创建连接
+
+        xmlhttp.open('POST','/ajaxtest/');
+        //设置请求头
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        //发送请求体
+        xmlhttp.send('username=汪国强;password=12345')
+        //xmlhttp.send(null)
+    }
+
+
+
+    function creatxmlhttprequest() {
+        var xmlHttp;
+        // 适用于大多数浏览器，以及IE7和IE更高版本
+        try{
+            xmlHttp = new XMLHttpRequest();
+        } catch (e) {
+            // 适用于IE6
+            try {
+                xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+                // 适用于IE5.5，以及IE更早版本
+                try{
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (e){}
+            }
+        }
+        return xmlHttp;
+    }
+</script>
+</html>

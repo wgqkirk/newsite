@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="healhome@localhost" uuid="1512559f-ecb4-45df-af6b-9cd781b0d81f">
+    <data-source source="LOCAL" name="django@localhost" uuid="b22be111-d453-4743-808e-c0847eb44d16">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/healhome</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/django</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

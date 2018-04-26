@@ -14,6 +14,8 @@
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/bootswatch.min.css" />
     <link rel="stylesheet" href="../static/css/wangguoqianghoutai.css" />
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
       <style>
           .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
             padding: 8px;
@@ -31,37 +33,43 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            
+
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/index/">减肥班学员管理系统</a>
+          <a class="navbar-brand" href="/admin_index/">减肥班学员管理系统</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            		<li><a href="/index/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;后台首页</a></li>
-                    {% if coach %}
-                    <li><a href="/user/"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;学员管理</a></li>
-                    {% if manager %}
-            		<li><a href="/system/"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;系统管理</a></li>
-            		{% endif %}
-                    <li><a href="/data/"><span class="glyphicon glyphicon-hdd"></span>&nbsp;&nbsp;数据管理</a></li>
-                    {% endif %}
+            		<li><a href="/admin_index/"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理员管理</a></li>
+                    <li class="active"><a href="/admin_coach/"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;教练员管理</a></li>
+            		<li><a href="/admin_item/"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;项目管理</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+                <li style="padding-top: 13px;color: white;">欢迎，管理员：</li>
+          		<li class="dropdown">
+				  <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     {{ pageusername }}
+
+				</a>
+
+				</li>
+          	<li><a href="/signout" style="padding-right: 3px;"><span class="glyphicon glyphicon-off">&nbsp;退出</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-			<div class="modal fade" id="adduser" tabindex="-1" role="dialog" aria-labelledby="adduserl">
+			<div class="modal fade" id="addcoach" tabindex="-1" role="dialog" aria-labelledby="addcoach">
 			  <div class="modal-dialog" role="document">
 			<div class="modal-content">
 			  <div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<h4 class="modal-title" id="exampleModalLabel">添加用户</h4>
+			<h4 class="modal-title" id="exampleModalLabel">添加教练</h4>
 			  </div>
 			  <div class="modal-body">
-			<form action="/user/" method="post">
+			<form action="/admin_coach/" method="post">
 
 			  <div class="form-group">
 			<label for="recipient-name" class="control-label">用户名</label>
@@ -82,28 +90,25 @@
 			      <option value="女">女</option>
 			    </select>
 			  </div>
-			  <div class="form-group">
-			<label for="message-text" class="control-label">年龄</label>
-			<input type="text" class="form-control" id="age" name="age">
+			  <div class="input-group date" id="form_datetime">
+			<label for="message-text" class="control-label">出生日期</label>
+                  <div class="input-group">
+                      <input type="text" class="form-control" id="birth" name="birth" value="1993-01-01">
+                  <span class="input-group-addon" style=" width: 50px; height: 30px;">
+                    <span class="glyphicon glyphicon-calendar" ></span>
+                  </span>
+                  </div>
 			  </div>
 			  <div class="form-group">
-			<label for="message-text" class="control-label">体重</label>
-			<input type="text" class="form-control" id="weight" name="weight">
+			<label for="message-text" class="control-label">联系方式</label>
+			<input type="text" class="form-control" id="tel" name="tel">
 			  </div>
 			  <div class="form-group">
-			<label for="message-text" class="control-label">身高</label>
-			<input type="text" class="form-control" id="height" name="height">
-			  </div>
-			  <div class="form-group">
-			<label for="message-text" class="control-label">请输入用户邮箱:</label>
-			<input type="email" class="form-control" id="email" name="email"></textarea>
-			  </div>
-			  <div class="form-group">
-					<label for="choice">选择用户组</label>
-						 <select name="rank" class="form-control">
-						 	<option value=1 selected>初级用户</option>
-						 	<option value=2>中级用户</option>
-						 	<option value=3>高级用户</option>
+					<label for="choice">选择负责项目</label>
+						 <select name="charge" class="form-control">
+                             {% for i in item_set %}
+						 	<option value={{ i.id }} >{{ i.itemname }}</option>
+                             {% endfor %}
 						 </select>
 			  </div>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -117,35 +122,33 @@
     <div class="container">
     	<div class="row">
       <div class="col-md-2">
-      	<div class="list-group">      		
-					<a href="/user/" class="list-group-item active">用户管理</a>
-					<a href="/usersearch/" class="list-group-item">用户搜索</a>
-					<a class="list-group-item" data-toggle="modal" data-target="#adduser" data-whatever="@getbootstrap">添加用户</a>
+      	<div class="list-group">
+					<a href="/admin_coach/" class="list-group-item active">教练员管理</a>
+					<a class="list-group-item" data-toggle="modal" data-target="#addcoach" data-whatever="@getbootstrap">添加教练员</a>
       	</div>
       </div>
       <div class="col-md-10">
       		<div class="page-header">
-      			<h4>用户管理</h4>
+      			<h4>教练员管理</h4>
       		</div>
 						<ul class="nav nav-tabs">
-						  <li role="presentation" class="active"><a href="/user/">用户管理</a></li>
-						  <li role="presentation"><a href="/usersearch/">搜索用户</a></li>
-						  <li role="presentation"><a data-toggle="modal" data-target="#adduser" data-whatever="@getbootstrap">添加用户</a></li>
+						  <li role="presentation" class="active"><a href="/admin_coach/">教练员管理</a></li>
+						  <li role="presentation"><a data-toggle="modal" data-target="#addcoach" data-whatever="@getbootstrap">添加教练员</a></li>
 						</ul>
-						
+
 						<table class="table table-responsive table-striped">
                         <thead>
-                        <tr><th>ID</th><th>	用户名</th><th>性别</th><th>年龄</th><th>体重</th><th>身高</th><th>邮箱</th><th>用户等级</th><th>操作</th></tr>
+                        <tr><th>用户名</th><th>性别</th><th>联系方式</th><th>负责项目</th><th>操作</th></tr>
                         </thead>
 						<tbody id="tbody">
                         {% for i in query_set %}
-                            <tr id="infotr"><td id="userid">{{ i.id }}</td><td id="username">{{ i.username }}</td><td>{{ i.gender }}</td><td>{{ i.age }}</td><td>{{ i.weight }}</td><td>{{ i.height }}</td><td>{{ i.email }}</td><td>{{ i.rank }}</td>
+                            <tr id="infotr"><td id="uid" style="display: none">{{ i.uid }}</td><td id="username">{{ i.username }}</td><td>{{ i.gender }}</td><td>{{ i.tel }}</td><td>{{ i.charge }}</td>
 								<td><div class="btn-group">
 								  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								操作 <span class="caret"></span>
 								  </button>
 								  <ul class="dropdown-menu">
-								<li><a class="btn-default" href="/useredit/?userid={{ i.id }}" data-whatever="@getbootstrap" id="bianji">编辑</a></li>
+								<li><a class="btn-default" href="/admin_coach_edit/?uid={{ i.uid }}" data-whatever="@getbootstrap" id="bianji">编辑</a></li>
 								<li><a id="delete">删除</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="#">锁定</a></li>
@@ -157,17 +160,17 @@
                         </tbody>
 
 						</table>
-						
-      	
+
+
       </div>
     	</div>
 
 
             {{ page|safe }}
 
-    
+
     </div>
-    
+
    <section id="footer">
        	<div class="container">
        		<p>Copyright © 2017-2018  www.wangguoqiang.com 沪ICP备13014270号-4</p>
@@ -179,15 +182,26 @@
 
     <script src="../static/js/jquery-3.2.1.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/moment-with-locales.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script>
+        $(function () {
+            info='{{ info }}'
+            if(info){
+                window.alert('该用户名已存在，请更换！')
+            }
+        })
+    </script>
     <script>
         $('#tbody').delegate('#delete',"click",function () {
             var username=$(this).closest('#infotr').children('#username').text()
-            var userid=$(this).closest('#infotr').children('#userid').text()
+            var uid=$(this).closest('#infotr').children('#uid').text()
             var choice=confirm('确认删除'+"'"+username+"'"+"?")
             if (choice){
                 $.ajax({
-                    url:'/userdelete',
-                    data:{userid:userid},
+                    url:'/coachdelete/',
+                    data:{uid:uid},
                     type:'POST',
                     success:function (data) {
                         console.log(data)
@@ -198,6 +212,35 @@
         })
     </script>
 
+    <script>
+            $("#form_datetime").datetimepicker({
+            format: "yyyy-mm-dd",
+            language: 'zh-CN',
+            autoclose: true,
+            minView: "month",
+            pickerPosition: "top-right",
+            locale: moment.locale('zh-cn')
+        });
+{#        function Datetime() {#}
+{#        $('#datetimepicker').datetimepicker({#}
+{#        language: 'zh-CN',//显示中文#}
+{#        format: 'yyyy-mm-dd',//显示格式#}
+{#        minView: "month",//设置只显示到月份#}
+{#        autoclose: true,//选中自动关闭#}
+{#        todayBtn: true,//显示今日按钮#}
+{#        locale: moment.locale('zh-cn')#}
+{#    });#}
+{#    //默认获取当前日期#}
+{#    var today = new Date();#}
+{#    var nowdate = (today.getFullYear()) + "-" + (today.getMonth() + 1) + "-" + today.getDate();#}
+{#    //对日期格式进行处理#}
+{#    var date = new Date(nowdate);#}
+{#    var mon = date.getMonth() + 1;#}
+{#    var day = date.getDate();#}
+{#    var mydate = date.getFullYear() + "-" + (mon < 10 ? "0" + mon : mon) + "-" + (day < 10 ? "0" + day : day);#}
+{#    document.getElementById("birth").value = mydate;#}
+{# }#}
+    </script>
     {#    <script>#}
     {#        $('#tbody').delegate('#bianji',"click",function () {#}
     {#            var username=$(this).closest('#infotr').children('#username').text()#}
@@ -226,4 +269,4 @@
     {#    </script>#}
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   </body>
-</html>   
+</html>

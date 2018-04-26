@@ -31,7 +31,7 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            
+
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -61,8 +61,7 @@
 			<h4 class="modal-title" id="exampleModalLabel">添加用户</h4>
 			  </div>
 			  <div class="modal-body">
-			<form action="/user/" method="post">
-
+			<form action="#" method="post">
 			  <div class="form-group">
 			<label for="recipient-name" class="control-label">用户名</label>
 			<input type="text" class="form-control" id="username"  name="username">
@@ -78,8 +77,8 @@
 			  <div class="form-group">
 			    <label for="name">性别</label>
 			    <select class="form-control" name="gender">
-			      <option value="男">男</option>
-			      <option value="女">女</option>
+			      <option id="男">男</option>
+			      <option id="女">女</option>
 			    </select>
 			  </div>
 			  <div class="form-group">
@@ -101,9 +100,9 @@
 			  <div class="form-group">
 					<label for="choice">选择用户组</label>
 						 <select name="rank" class="form-control">
-						 	<option value=1 selected>初级用户</option>
-						 	<option value=2>中级用户</option>
-						 	<option value=3>高级用户</option>
+						 	<option id="基础用户" selected>基础用户</option>
+						 	<option id="中级用户">中级用户</option>
+						 	<option id="高级用户">高级用户</option>
 						 </select>
 			  </div>
 					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -114,10 +113,78 @@
 			</div>
 			</div>
 
+
+    			<div class="modal fade" id="updateuser" tabindex="-1" role="dialog" aria-labelledby="adduserl">
+			  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<h4 class="modal-title" id="exampleModalLabel">修改信息</h4>
+			  </div>
+			  <div class="modal-body">
+			<form action="update.php" method="post">
+				<div class="form-group">
+				<label for="recipient-name" class="control-label">ID</label>
+				<input type="text" class=" form-control" value="" id="userid" name="userid">
+			  	</div>
+			  <div class="form-group">
+			<label for="recipient-name" class="control-label">用户名</label>
+			<input type="text" class="form-control" id="username" name="username">
+			  </div>
+			  <div class="form-group">
+			<label for="message-text" class="control-label">密码:</label>
+			<input type="password" class="form-control" id="pwd" name="pwd"></textarea>
+			  </div>
+			  <div class="form-group">
+			<label for="message-text" class="control-label">确认密码:</label>
+			<input type="password" class="form-control" id="pwdcomfirm" name="pwdcomfirm"></textarea>
+			  </div>
+			  <div class="form-group">
+			    <label for="name">性别</label>
+			    <select class="form-control" name="gender">
+			      <option id="男">男</option>
+			      <option id="女">女</option>
+			    </select>
+			  </div>
+			  <div class="form-group">
+			<label for="message-text" class="control-label">年龄</label>
+			<input type="text" class="form-control" id="age" name="age">
+			  </div>
+			  <div class="form-group">
+			<label for="message-text" class="control-label">体重</label>
+			<input type="text" class="form-control" id="weight" name="weight">
+			  </div>
+			  <div class="form-group">
+			<label for="message-text" class="control-label">身高</label>
+			<input type="text" class="form-control" id="height" name="height">
+			  </div>
+			  <div class="form-group">
+			<label for="message-text" class="control-label">请输入用户邮箱:</label>
+			<input type="email" class="form-control" id="email" name="email"></textarea>
+			  </div>
+			  <div class="form-group">
+					<label for="choice">选择用户组</label>
+						 <select name="rank" id="rank" class="form-control">
+						 	<option id="基础用户" selected>基础用户</option>
+						 	<option id="中级用户">中级用户</option>
+						 	<option id="高级用户">高级用户</option>
+						 </select>
+			  </div>
+					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="submit" class="btn btn-primary">修改</button>
+			</form>
+			  </div>
+			</div>
+			</div>
+			</div>
+
+
+
+
     <div class="container">
     	<div class="row">
       <div class="col-md-2">
-      	<div class="list-group">      		
+      	<div class="list-group">
 					<a href="/user/" class="list-group-item active">用户管理</a>
 					<a href="/usersearch/" class="list-group-item">用户搜索</a>
 					<a class="list-group-item" data-toggle="modal" data-target="#adduser" data-whatever="@getbootstrap">添加用户</a>
@@ -132,7 +199,7 @@
 						  <li role="presentation"><a href="/usersearch/">搜索用户</a></li>
 						  <li role="presentation"><a data-toggle="modal" data-target="#adduser" data-whatever="@getbootstrap">添加用户</a></li>
 						</ul>
-						
+
 						<table class="table table-responsive table-striped">
                         <thead>
                         <tr><th>ID</th><th>	用户名</th><th>性别</th><th>年龄</th><th>体重</th><th>身高</th><th>邮箱</th><th>用户等级</th><th>操作</th></tr>
@@ -145,7 +212,7 @@
 								操作 <span class="caret"></span>
 								  </button>
 								  <ul class="dropdown-menu">
-								<li><a class="btn-default" href="/useredit/?userid={{ i.id }}" data-whatever="@getbootstrap" id="bianji">编辑</a></li>
+								<li><a class="btn-default" data-toggle="modal" data-target="#updateuser" data-whatever="@getbootstrap" id="bianji">编辑</a></li>
 								<li><a id="delete">删除</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="#">锁定</a></li>
@@ -154,20 +221,24 @@
 								</td>
 							</tr>
                             {% endfor %}
+
                         </tbody>
 
 						</table>
-						
-      	
+
+
       </div>
+        {% if flag %}
+            <div class="col-md-2"></div>
+            <div><h3>未查到相关用户</h3></div>
+        {% endif %}
     	</div>
 
+{#            {{ page|safe }}#}
 
-            {{ page|safe }}
 
-    
     </div>
-    
+
    <section id="footer">
        	<div class="container">
        		<p>Copyright © 2017-2018  www.wangguoqiang.com 沪ICP备13014270号-4</p>
@@ -197,33 +268,9 @@
             }
         })
     </script>
+    <script>
 
-    {#    <script>#}
-    {#        $('#tbody').delegate('#bianji',"click",function () {#}
-    {#            var username=$(this).closest('#infotr').children('#username').text()#}
-    {#            var userid=$(this).closest('#infotr').children('#userid').text()#}
-    {#            var choice=true#}
-    {#            if (choice){#}
-    {#                $.ajax({#}
-    {#                    url:'/useredit',#}
-    {#                    data:{userid:userid},#}
-    {#                    type:'POST',#}
-    {#                    success:successcallback,#}
-    {#                })#}
-    {#            }#}
-    {##}
-    {#        }#}
-    {##}
-    {#        )#}
-    {#        function myfunc(data) {#}
-    {#            $('#updateuser #username')[0].text(data)#}
-    {#            console.log('hello')#}
-    {#        }#}
-    {#        function successcallback(data) {#}
-    {#            myfunc(data)#}
-    {#        }#}
-    {##}
-    {#    </script>#}
+    </script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   </body>
-</html>   
+</html>
