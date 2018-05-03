@@ -401,7 +401,7 @@ def coach_search_student(request):
 
 from django.db.models import Q
 def coach_search_result(request):
-    username = request.session.get('username')
+    pageusername = request.session.get('username')
     print('11111')
     if username:
         user_list=models.userinfo.objects.all()
@@ -895,9 +895,10 @@ def registeraction(req):
 
             return redirect('login.html')
         else:
-            print(obj)
+            oo= obj
+            item_set = models.item.objects.all()
         #   print(list(errorinfo['username'][0])[0])
-            return render(req,'register.html',{'oo':obj})
+            return render(req,'register.html',locals())
 
 
 import os
