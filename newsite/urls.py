@@ -22,7 +22,9 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^favicon\.ico$', RedirectView.as_view(url='../static/img/favicon.ico')),
     url(r'^time',views.time),
-    url(r'^index',views.index),
+    url(r'^student_index',views.student_index),
+    url(r'^student_edit/', views.student_edit),
+
     url(r'^admindelete/', views.admindelete),
     url(r'^coachdelete/', views.coachdelete),
 

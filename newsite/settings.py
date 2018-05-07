@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9@91ki6%3y3-z#ke+)(a9(*9z*658iewym=!p4&64+3!9ct(2^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','.juedihome.site']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','*']
 
 
 # Application definition

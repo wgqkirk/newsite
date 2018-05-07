@@ -1,68 +1,179 @@
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
     <head>
         <meta charset="utf-8">
-        <script type="text/javascript" src="../static/js/Chart.js"></script>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>getClassmate</title>
+        <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/bootswatch.min.css" />
+    <link rel="stylesheet" href="../static/css/wangguoqianghoutai.css" />
+    <link rel="stylesheet" href="../static/css/bootstrapValidator.css" />
+    <link href="../static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+    <![endif]-->
     </head>
     <body>
+        <div class="col-xs-12">
+<div id="createModal" class="modal-dialog demo2do-modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header beast-breadcrumb no-bottom-border clearfix">
+            <h2><i class="glyphicon glyphicon-fire" title=""></i>  <span>添加权限</span></h2>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        <form class="form-horizontal" id="createForm" method="POST" action="">
+            <div class="modal-body">
+                <div class="form-group demo2do-form-group">
+                    <label class="col-xs-3 control-label">权限系统名</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" id="privilegeName" name="privilegeName"/>
+                    </div>
+                </div>
+                <div class="form-group demo2do-form-group">
+                    <label class="col-xs-3 control-label">权限中文名</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" id="create_Name" name="privilegeCnName" />
+                    </div>
+                </div>
+                <div class="form-group demo2do-form-group">
+                    <label class="col-xs-3 control-label">URI</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" id="uri" name="uri" />
+                    </div>
+                </div>
+                <div class="form-group demo2do-form-group">
+                    <label class="col-xs-3 control-label">排序索引号</label>
+                    <div class="col-xs-8">
+                        <input type="text" class="form-control" id="sortIndex" name="sortIndex" />
+                    </div>
+                </div>
+                <div class="form-group demo2do-form-group">
+                    <label class="col-xs-3 control-label">权限分类</label>
+                    <div class="col-xs-8" id="moduleParentDiv">
+                        <select id="level" name="moduleId" class="form-control select2">
+                            <option></option>
+                            <option value="1">普通权限</option>
+                            <option value="2">菜单</option>
+                            <option value="3">模块</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group demo2do-form-group">
+                    <label class="col-xs-3 control-label">是否默认选中</label>
+                    <div class="col-xs-8">
+                        <select id="isChecked" name="isChecked" class="form-control select2">
+                            <option value="">否</option>
+                            <option value="1">是</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group demo2do-form-group">
+                    <label class="col-xs-3 control-label">上级权限</label>
+                    <div class="col-xs-8">
+                        <select id="parentPrivilegeId" name="parentPrivilegeId" class="form-control">
+                            <option value="3620194" selected="selected">select2/select2</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success btn-shadow btn-shadow-success demo2do-btn">添加</button>
+                <button type="button" class="btn btn-default btn-shadow btn-shadow-default demo2do-btn" data-dismiss="modal">取消</button>
+            </div>
+        </form>
+    </div>
+</div>
+        </div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+        <script src="../static/js/moment-with-locales.js"></script>
+    <script src="../static/js/bootstrapValidator.js"></script>
+    <script src="../static/js/bootstrap-datetimepicker.zh-CN.js"></script>
 
-        <canvas id="canvas" height="450" width="600"></canvas>
+<!--     <script type="text/javascript">
+        $(function () {
+                $('#isChecked').select2({
+                allowClear: true,
+                minumiumResultsForSearch: 1,
+                maximumSelectionLength: 5
+            });
+        });
+        </script>-->
         <script type="text/javascript">
-            var ctx = new Chart(document.getElementById("canvas").getContext("2d"));
-            var options = {scaleFontSize: 13, scaleFontColor: "#ffa45e"};
-
-            // 线型图
-            var LineChart = {
-                labels: ["Ruby", "jQuery", "Java", "ASP.Net", "PHP"],
-                datasets: [{
-                    fillColor: "rgba(151,249,190,0.5)",
-                    strokeColor: "rgba(255,255,255,1)",
-                    pointColor: "rgba(220,220,220,1)",
-                    pointStrokeColor: "#fff",
-                    data: [10, 20, 30, 40, 50]
-                    }, {
-                    fillColor: "rgba(252,147,65,0.5)",
-                    strokeColor: "rgba(255,255,255,1)",
-                    pointColor: "rgba(173,173,173,1)",
-                    pointStrokeColor: "#fff",
-                    data: [28, 68, 40, 19, 96]
-                }]
-            };
-            var myLineChart = ctx.Line(LineChart, options);
-
-            // 条形图
-            var BarChart = {
-                labels: ["Ruby", "jQuery", "Java", "ASP.Net", "PHP"],
-                datasets: [{
-                    fillColor: "rgba(151,249,190,0.5)",
-                    strokeColor: "rgba(255,255,255,1)",
-                    data: [13, 20, 30, 40, 50]
-                    }, {
-                    fillColor: "rgba(252,147,65,0.5)",
-                    strokeColor: "rgba(255,255,255,1)",
-                    data: [28, 68, 40, 19, 96]
-                }]
-            };
-            //var myBarChart = ctx.Bar(BarChart, options);
-
-
-            // 饼状图
-            var pieChart = [
-                    {value: 40, color: "#fcc79c"},
-                    {value: 30, color: "#beefd2"},
-                    {value: 90, color: "#ffddfb"},
-                ];
-            //var myPieChart = ctx.Pie(pieChart);
-
-
-            // 环状图
-            var doughnutChart = [
-                    {value: 60, color: "#fcc79e"},
-                    {value: 30, color: "#beefd2"},
-                    {value: 50, color: "#ffddfb"},
-                    {value: 120, color: "#cdecff"},
-                    {value: 90, color: "#fff5bc"}
-                ];
-            //var myRingChart = ctx.Doughnut(doughnutChart);
-        </script>
-    </body>
+        //验证规则
+$('#createForm').bootstrapValidator({
+    message: 'This value is not valid',
+    feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+    },
+    fields: {
+        //表单name
+        privilegeName: {
+            //提示消息
+            message: '系统权限名验证失败',
+            //需要做的验证
+            validators: {
+                //验证项
+                notEmpty: {
+                    message: '系统权限名不能为空'
+                },
+                stringCase: {
+                    message: '系统权限名必须是大写',
+                    'case': 'upper'
+                }
+            }
+        },
+        privilegeCnName: {
+            //提示消息
+            message: '权限中文名称验证失败',
+            //需要做的验证
+            validators: {
+                //验证项
+                notEmpty: {
+                    message: '权限中文名称不能为空'
+                }
+            }
+        },
+        uri: {
+            //提示消息
+            message: '权限名称验证失败',
+            //需要做的验证
+            validators: {
+                //验证项
+                notEmpty: {
+                    message: '权限路径不能为空'
+                }
+            }
+        },
+        level: {
+            //提示消息
+            message: '权限分类失败',
+            //需要做的验证
+            validators: {
+                //验证项
+                notEmpty: {
+                    message: '权限分类不能为空'
+                }
+            }
+        },
+        sortIndex: {
+            validators: {
+                notEmpty: {
+                    message: '排序不能为空'
+                },
+                numeric: {
+                    message: '排序号必须是数字'
+                }
+            }
+        }
+    }
+});
+</script>
+</body>
 </html>

@@ -48,13 +48,13 @@ def signout(request):
 #         if models.userinfo.objects.filter(**info).exists():
 #
 #             #print("this",request.session.get('username'))
-#             #rep=redirect('/index.html')
+#             #rep=redirect('/student_index.html')
 #             request.session['username'] = username
-#             return render(request,'index.html')
+#             return render(request,'student_index.html')
 #         else:
 #             flag=True
 #             return render(request,'login.html',locals())
-def index(request):
+def student_index(request):
     pageusername = request.session.get('username')
     if pageusername:
         query_set = models.userinfo.objects.filter(username=pageusername)
@@ -106,9 +106,43 @@ def index(request):
                                     else:
                                         if models.weekly_info.objects.get(username=pageusername).week0:
                                             weekinfo = [week0]
-        return render(request,'index.html',locals())
+        return render(request, 'student_index.html', locals())
     else:
         return redirect('/login.html')
+
+def student_edit(request):
+    pageusername = request.session.get('username')
+    if pageusername:
+        if request.method=='GET':
+            userset=models.userinfo.objects.get(username=pageusername,)
+            item_set = models.item.objects.all()
+            return render(request,'student_edit.html',locals())
+        elif request.method=='POST':
+            uid=request.POST.get('uid')
+            username = request.POST.get('username')
+            m1 = hashlib.md5()
+            password_org=request.POST.get('pwd', None)
+            m1.update(password_org.encode('utf-8'))
+            password = m1.hexdigest()
+            gender = request.POST.get('gender')
+            birth = request.POST.get('birth')
+            email=request.POST.get('email')
+            print(request.POST.get('choice'))
+            obj=models.userinfo.objects.get(username=pageusername)
+            obj.username=username
+            if request.POST.get('pwd'):
+                obj.password=password
+            obj.birth=birth
+            obj.gender=gender
+            obj.email=email
+            if request.POST.get('choice'):
+                choice = int(request.POST.get('choice'))
+                new_obj=models.user_now.objects.get(uid=uid)
+                new_obj.choice_id=choice
+                new_obj.save()
+                obj.choice_id=choice
+            obj.save()
+            return redirect('student_edit.html')
 def admindelete(request):
     pageusername = request.session.get('username')
     uid = request.POST.get('uid', None)
@@ -232,7 +266,7 @@ def admin_coach_edit(request):
             gender = request.POST.get('gender')
             birth = request.POST.get('birth')
             charge = int(request.POST.get('charge'))
-            obj=models.coach.objects.get(id=uid)
+            obj=models.coach.objects.get(uid=uid)
             obj.username=username
             obj.password=password
             obj.birth=birth
@@ -271,7 +305,6 @@ def admin_item(request):
             obj = page_help('/admin_item', current_page, total, 10)
             page = obj.page_str()
             query_set = models.item.objects.all()[obj.db_start():obj.db_end()]
-
             return render(request, 'admin_item.html', locals())
 
 
@@ -403,9 +436,9 @@ from django.db.models import Q
 def coach_search_result(request):
     pageusername = request.session.get('username')
     print('11111')
-    if username:
+    if pageusername:
         user_list=models.userinfo.objects.all()
-        queryset = models.coach.objects.filter(username=username)
+        queryset = models.coach.objects.filter(username=pageusername)
         for i in queryset:
             the_id = i.charge_id
             user_list=user_list.filter(choice_id=the_id)
@@ -786,10 +819,9 @@ class Login(views.View):
             if iden == 'admin':
                 return redirect('admin_index.html', locals())
             elif iden == 'coach':
-
                 return redirect('coach_index.html', locals())
             elif iden == 'student':
-                return redirect('index.html', locals())
+                return redirect('student_index.html', locals())
         else:
             flag = True
             return render(request, 'login.html', locals())
@@ -808,9 +840,9 @@ class Login(views.View):
 #         if models.userinfo.objects.filter(**info).exists():
 #
 #             #print("this",request.session.get('username'))
-#             #rep=redirect('/index.html')
+#             #rep=redirect('/student_index.html')
 #             request.session['username'] = username
-#             return redirect('index.html')
+#             return redirect('student_index.html')
 #         else:
 #             flag=True
 #             return render(request,'login.html',locals())
@@ -830,9 +862,9 @@ class Login(views.View):
 #         if models.userinfo.objects.filter(**info).exists():
 #
 #             #print("this",request.session.get('username'))
-#             #rep=redirect('/index.html')
+#             #rep=redirect('/student_index.html')
 #             #request.session['username'] = username
-#             return redirect('index.html')
+#             return redirect('student_index.html')
 #         else:
 #             flag=True
 #             return render(request,'login.html',locals())
