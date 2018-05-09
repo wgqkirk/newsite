@@ -18,7 +18,7 @@ from django.contrib import admin
 from blog import views
 from django.views.generic.base import RedirectView
 urlpatterns = [
-
+    url(r'^$', views.Login.as_view()),
     url(r'^admin/', admin.site.urls),
     url(r'^favicon\.ico$', RedirectView.as_view(url='../static/img/favicon.ico')),
     url(r'^time',views.time),
