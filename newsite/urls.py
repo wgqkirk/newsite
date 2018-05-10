@@ -37,6 +37,8 @@ urlpatterns = [
 
     url(r'^coach_index', views.coachs_index),
     url(r'^coach_student/', views.coach_student),
+    url(r'^single_chart/', views.single_chart),
+
     url(r'^coach_search_student/', views.coach_search_student),
     url(r'^coach_student_edit/', views.coach_student_edit),
     url(r'^coach_search_result/',views.coach_search_result),

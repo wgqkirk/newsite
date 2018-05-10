@@ -50,11 +50,14 @@
                                     <input type="radio" name="identify" value="student">学员
                                 </div>
                             </div>
-							<button type="submit" class="btn btn-default pull-right" style="margin-left: 5px">登录</button>
-
-                            <a href="/register.html" type="button" class="btn btn-default pull-right" style="margin-left: 5px">注册</a>
-                        {% endblock %}
-							<button type="reset" class="btn btn-default pull-right" style="margin-left: 5px">重新输入</button>
+                            <div class="col-xs-4">
+                           <a href="/register.html" type="button" class="btn btn-default pull-left" style="margin-left: 5px">注册</a>
+                            </div>
+                            <div class="col-xs-8">
+                                <button type="submit" class="btn btn-default pull-right" style="margin-left: 5px">登录</button>
+							    <button type="reset" class="btn btn-default pull-right" style="margin-left: 5px">重新输入</button>
+                            </div>
+                    {% endblock %}
                     {% csrf_token %}
 
 					</form>

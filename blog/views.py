@@ -7,7 +7,8 @@ from django import forms
 from django.views.decorators.csrf import csrf_exempt
 from blog import models
 import hashlib
-
+from utils.pageation import page_help
+from utils.my_function import *
 # Create your views here.
 
 
@@ -118,7 +119,7 @@ def student_edit(request):
             item_set = models.item.objects.all()
             return render(request,'student_edit.html',locals())
         elif request.method=='POST':
-            uid=request.POST.get('uid')
+            uid=request.POST.get('id')
             username = request.POST.get('username')
             m1 = hashlib.md5()
             password_org=request.POST.get('pwd', None)
@@ -127,7 +128,6 @@ def student_edit(request):
             gender = request.POST.get('gender')
             birth = request.POST.get('birth')
             email=request.POST.get('email')
-            print(request.POST.get('choice'))
             obj=models.userinfo.objects.get(username=pageusername)
             obj.username=username
             if request.POST.get('pwd'):
@@ -167,7 +167,7 @@ def admin_index(request):
                 info='该用户已重复'
                 current_page = int(request.GET.get('pagenum', 1))
                 total = models.admin.objects.all().count()
-                from utils.pageation import page_help
+
                 obj = page_help('/admin_index/', current_page, total, 10)
                 page = obj.page_str()
                 query_set = models.admin.objects.all()[obj.db_start():obj.db_end()]
@@ -183,7 +183,7 @@ def admin_index(request):
                 # 获取到当前页码
                 current_page = int(request.GET.get('pagenum', 1))
                 total = models.admin.objects.all().count()
-                from utils.pageation import page_help
+
                 obj = page_help('/admin_index', current_page, total, 10)
                 page = obj.page_str()
                 query_set = models.admin.objects.all()[obj.db_start():obj.db_end()]
@@ -193,7 +193,6 @@ def admin_index(request):
             # 获取到当前页码
             current_page = int(request.GET.get('pagenum', 1))
             total = models.admin.objects.all().count()
-            from utils.pageation import page_help
             obj = page_help('/admin_index', current_page, total, 10)
             page = obj.page_str()
             query_set = models.admin.objects.all()[obj.db_start():obj.db_end()]
@@ -209,7 +208,6 @@ def admin_coach(request):
                 info='该用户已重复'
                 current_page = int(request.GET.get('pagenum', 1))
                 total = models.coach.objects.all().count()
-                from utils.pageation import page_help
                 obj = page_help('/admin_coach/', current_page, total, 10)
                 page = obj.page_str()
                 query_set = models.coach.objects.all()[obj.db_start():obj.db_end()]
@@ -230,7 +228,6 @@ def admin_coach(request):
                 # 获取到当前页码
                 current_page = int(request.GET.get('pagenum', 1))
                 total = models.coach.objects.all().count()
-                from utils.pageation import page_help
                 obj = page_help('/admin_coach/', current_page, total, 10)
                 page = obj.page_str()
                 query_set = models.coach.objects.all()[obj.db_start():obj.db_end()]
@@ -239,7 +236,6 @@ def admin_coach(request):
             # 获取到当前页码
             current_page = int(request.GET.get('pagenum', 1))
             total = models.coach.objects.all().count()
-            from utils.pageation import page_help
             obj = page_help('/admin_coach/', current_page, total, 10)
             page = obj.page_str()
             query_set = models.coach.objects.all()[obj.db_start():obj.db_end()]
@@ -291,7 +287,6 @@ def admin_item(request):
             # 获取到当前页码
             current_page = int(request.GET.get('pagenum', 1))
             total = models.item.objects.all().count()
-            from utils.pageation import page_help
             obj = page_help('/admin_item', current_page, total, 10)
             page = obj.page_str()
             query_set = models.item.objects.all()[obj.db_start():obj.db_end()]
@@ -301,7 +296,6 @@ def admin_item(request):
             # 获取到当前页码
             current_page = int(request.GET.get('pagenum', 1))
             total = models.item.objects.all().count()
-            from utils.pageation import page_help
             obj = page_help('/admin_item', current_page, total, 10)
             page = obj.page_str()
             query_set = models.item.objects.all()[obj.db_start():obj.db_end()]
@@ -378,7 +372,6 @@ def coach_student(request):
             # 获取到当前页码
             current_page = int(request.GET.get('pagenum', 1))
             total = models.userinfo.objects.filter(choice_id=the_id).count()
-            from utils.pageation import page_help
             obj = page_help('/coach_student/', current_page, total, 10)
             page = obj.page_str()
             query_set = models.userinfo.objects.filter(choice_id=the_id)[obj.db_start():obj.db_end()]
@@ -389,9 +382,9 @@ def coach_student_edit(request):
     pageusername = request.session.get('username')
     if pageusername:
         if request.method=='GET':
-            uid = request.GET.get('id', None)
+            uid = request.GET.get('uid', None)
             print(uid)
-            info=models.userinfo.objects.get(id=uid,)
+            info=models.userinfo.objects.get(uid=uid,)
             item_set = models.item.objects.all()
             return render(request,'coach_student_edit.html',locals())
         elif request.method=='POST':
@@ -406,7 +399,7 @@ def coach_student_edit(request):
             email=request.POST.get('email')
             print(request.POST.get('choice'))
 
-            obj=models.userinfo.objects.get(id=uid)
+            obj=models.userinfo.objects.get(uid=uid)
             obj.username=username
             if request.POST.get('pwd'):
                 obj.password=password
@@ -414,13 +407,40 @@ def coach_student_edit(request):
             obj.gender=gender
             obj.email=email
             if request.POST.get('choice'):
+                id=obj.id
                 choice = int(request.POST.get('choice'))
-                new_obj=models.user_now.objects.get(uid=uid)
+                new_obj=models.user_now.objects.get(uid=id)
                 new_obj.choice_id=choice
                 new_obj.save()
                 obj.choice_id=choice
             obj.save()
             return redirect('/coach_student/')
+    else:
+        return redirect('/login.html')
+def single_chart(request):
+    pageusername = request.session.get('username')
+    if pageusername:
+        uid=request.GET.get('uid')
+        print(uid)
+        userset=models.userinfo.objects.filter(uid=uid,)
+        userset=userset[0]
+        userheight=userset.height
+        id=userset.id
+        print(userheight)
+        userinfo=models.weekly_info.objects.filter(uid=id,)
+        userinfo=userinfo[0]
+        userweight=[userinfo.week0,userinfo.week1,userinfo.week2,userinfo.week3,userinfo.week4,userinfo.week5,userinfo.week6,userinfo.week7,userinfo.week8]
+
+        #去除list里的None值,使其转成weight
+        userweight=make_weight_list(userweight)
+        max_weight=max(userweight)
+        min_weight=min(userweight)
+
+        #改变list里的值，使其转成bmi
+        userbmi=make_bmi(userheight,userweight)
+        max_bmi=max(userbmi)
+        min_bmi=min(userbmi)
+        return render(request,'single_chart.html',locals())
     else:
         return redirect('/login.html')
 
@@ -487,14 +507,22 @@ def coach_inputdata(request):
             beizhu=beizhu.split('#')
             print(uid,weight,week,beizhu)
             for i in range(len(uid)):
+                the_uid=int(uid[i])
                 if weight[i]=='':
                     input_weight=None
                 else:
                     input_weight=float(weight[i])
-                updataweekinfo(int(uid[i]),input_weight,week,beizhu[i])
+
+                updataweekinfo(the_uid,input_weight,week,beizhu[i])
+                updateusernow(the_uid,input_weight)
             return HttpResponse('already done')
     else:
         return redirect('/login.html')
+def updateusernow(uid,weight):
+    if weight:
+        myobj = models.user_now.objects.get(uid=uid)
+        myobj.weight = weight
+        myobj.save()
 
 def updataweekinfo(uid,weight,week,beizhu):
     if week=='week1':
@@ -592,7 +620,6 @@ def user(request):
             # 获取到当前页码
             current_page = int(request.GET.get('pagenum', 1))
             total = models.userinfo.objects.all().count()
-            from utils.pageation import page_help
             obj = page_help('/user', current_page, total, 10)
             page = obj.page_str()
             query_set = models.userinfo.objects.all()[obj.db_start():obj.db_end()]
@@ -602,7 +629,6 @@ def user(request):
             #获取到当前页码
             current_page=int(request.GET.get('pagenum',1))
             total=models.userinfo.objects.all().count()
-            from utils.pageation import page_help
             obj=page_help('/user',current_page,total,10)
             page=obj.page_str()
             query_set = models.userinfo.objects.all()[obj.db_start():obj.db_end()]
@@ -616,14 +642,7 @@ def userdelete(request):
     print(userid)
     models.userinfo.objects.filter(id=userid,).delete()
     models.user_now.objects.filter(uid=userid,).delete()
-    models.week1.objects.filter(id=userid, ).delete()
-    models.week2.objects.filter(id=userid, ).delete()
-    models.week3.objects.filter(id=userid, ).delete()
-    models.week4.objects.filter(id=userid, ).delete()
-    models.week5.objects.filter(id=userid, ).delete()
-    models.week6.objects.filter(id=userid, ).delete()
-    models.week7.objects.filter(id=userid, ).delete()
-    models.week8.objects.filter(id=userid, ).delete()
+    models.weekly_info.objects.filter(id=userid, ).delete()
     return HttpResponse('deleted')
 
 def usersearch(request):
@@ -911,7 +930,10 @@ def registeraction(req):
             birth = req.POST.get('birth')
             choice = int(req.POST.get('choice'))
             registertime = datetime.datetime.now()
-            user = {'username': username, 'password': password, 'email': email,'gender': gender, 'birth': birth, 'weight': weight, 'height': height, 'choice_id':choice ,'registerdate': registertime}
+            import uuid
+
+            uid=uuid.uuid4()
+            user = {'username': username, 'password': password, 'email': email,'gender': gender, 'birth': birth, 'weight': weight, 'height': height, 'choice_id':choice ,'registerdate': registertime,'uid':uid}
 
             # print(registertime)
             # user_list.append(user)

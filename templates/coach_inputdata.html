@@ -34,7 +34,20 @@
         color: green;
         font-size: 10px;
     }
-
+    .glyphicon-arrow-up{
+    color: red;
+    font-size: 10px;
+    }
+    .glyphicon-resize-horizontal{
+    color: blue;
+    font-size: 10px;
+    }
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    }
+    input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    }
 </style>
 <body class="index">
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -84,7 +97,7 @@
 						  		</thead>
 						  		<tbody>
                                     {% for i in user_list %}
-                                        <tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" name="weight" value="{% if not i.week1 %}{% else %}{{ i.week1 }}{% endif %}">{% if i.week1 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week0|func2:i.week1 }}</span>
+                                        <tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="number" name="weight" value="{% if not i.week1 %}{% else %}{{ i.week1 }}{% endif %}">{% if i.week1 %}<span class="{{ i.week0|func3:i.week1 }}">{{ i.week0|func2:i.week1 }}</span>
                                         {% endif %}
                                     </td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week1_suggest %}{% else %}{{ i.week1_suggest }}{% endif %}">
                                     </td></tr>
@@ -106,7 +119,7 @@
 						  		</thead>
 						  		<tbody>
                                     {% for i in user_list %}
-						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week2 %}{% else %}{{ i.week2 }}{% endif %}">{% if i.week2 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week1|func2:i.week2 }}</span>
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="number" value="{% if not i.week2 %}{% else %}{{ i.week2 }}{% endif %}">{% if i.week2 %}<span class="{{ i.week1|func3:i.week2 }}">{{ i.week1|func2:i.week2 }}</span>
                                         {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week2_suggest %}{% else %}{{ i.week2_suggest }}{% endif %}">
                                     </td></tr>
                                     {% endfor %}
@@ -127,7 +140,7 @@
 						  		</thead>
 						  		<tbody>
                                     {% for i in user_list %}
-						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week3 %}{% else %}{{ i.week3 }}{% endif %}">{% if i.week3 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week2|func2:i.week3 }}</span>
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="number" value="{% if not i.week3 %}{% else %}{{ i.week3 }}{% endif %}">{% if i.week3 %}<span class="{{ i.week2|func3:i.week3 }}">{{ i.week2|func2:i.week3 }}</span>
                                         {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week3_suggest %}{% else %}{{ i.week3_suggest }}{% endif %}">
                                     </td></tr>
                                     {% endfor %}
@@ -146,7 +159,7 @@
 						  		</thead>
 						  		<tbody>
                                     {% for i in user_list %}
-						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week4 %}{% else %}{{ i.week4 }}{% endif %}">{% if i.week4 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week3|func2:i.week4 }}</span>
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="number" value="{% if not i.week4 %}{% else %}{{ i.week4 }}{% endif %}">{% if i.week4 %}<span class="{{ i.week3|func3:i.week4 }}">{{ i.week3|func2:i.week4 }}</span>
                                         {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week4_suggest %}{% else %}{{ i.week4_suggest }}{% endif %}">
                                     </td></tr>
                                     {% endfor %}
@@ -167,7 +180,7 @@
 						  		</thead>
 						  		<tbody>
                                     {% for i in user_list %}
-						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week5 %}{% else %}{{ i.week5 }}{% endif %}">{% if i.week5 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week4|func2:i.week5 }}</span>
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="number" value="{% if not i.week5 %}{% else %}{{ i.week5 }}{% endif %}">{% if i.week5 %}<span class="{{ i.week4|func3:i.week5 }}">{{ i.week4|func2:i.week5 }}</span>
                                         {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week5_suggest %}{% else %}{{ i.week5_suggest }}{% endif %}">
                                     </td></tr>
                                     {% endfor %}
@@ -186,7 +199,7 @@
 						  		</thead>
 						  		<tbody>
                                     {% for i in user_list %}
-						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week6 %}{% else %}{{ i.week6 }}{% endif %}">{% if i.week6 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week5|func2:i.week6 }}</span>
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="number" value="{% if not i.week6 %}{% else %}{{ i.week6 }}{% endif %}">{% if i.week6 %}<span class="{{ i.week5|func3:i.week6 }}">{{ i.week5|func2:i.week6 }}</span>
                                         {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week6_suggest %}{% else %}{{ i.week6_suggest }}{% endif %}">
                                     </td></tr>
                                     {% endfor %}
@@ -207,7 +220,7 @@
 						  		</thead>
 						  		<tbody>
                                     {% for i in user_list %}
-						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week7 %}{% else %}{{ i.week7 }}{% endif %}">{% if i.week7 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week6|func2:i.week7 }}</span>
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="number" value="{% if not i.week7 %}{% else %}{{ i.week7 }}{% endif %}">{% if i.week7 %}<span class="{{ i.week6|func3:i.week7 }}">{{ i.week6|func2:i.week7 }}</span>
                                         {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week7_suggest %}{% else %}{{ i.week7_suggest }}{% endif %}">
                                     </td></tr>
                                     {% endfor %}
@@ -226,7 +239,7 @@
 						  		</thead>
 						  		<tbody>
                                     {% for i in user_list %}
-						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="text" value="{% if not i.week8 %}{% else %}{{ i.week8 }}{% endif %}">{% if i.week8 %}<span class="glyphicon glyphicon-arrow-down">{{ i.week7|func2:i.week8 }}</span>
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="number" value="{% if not i.week8 %}{% else %}{{ i.week8 }}{% endif %}">{% if i.week8 %}<span class="{{ i.week7|func2:i.week8 }}">{{ i.week7|func2:i.week8 }}</span>
                                         {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week8_suggest %}{% else %}{{ i.week8_suggest }}{% endif %}">
                                     </td></tr>
                                     {% endfor %}

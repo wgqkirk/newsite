@@ -54,6 +54,7 @@ class userinfo(models.Model):
     height=models.FloatField(null=True)
     registerdate=models.DateField(max_length=10)
     choice=models.ForeignKey(item,null=False)
+    uid=models.UUIDField(default=uuid.uuid4,editable=False)
     def __str__(self):
         return self.username
 
