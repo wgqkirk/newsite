@@ -400,20 +400,27 @@ def coach_student_edit(request):
             print(request.POST.get('choice'))
 
             obj=models.userinfo.objects.get(uid=uid)
+            id = obj.id
+            obj_user_now=models.user_now.objects.get(uid=id)
+            obj_weekly_info=models.weekly_info.objects.get(uid=id)
             obj.username=username
+            obj_user_now.username=username
+            obj_weekly_info.username=username
             if request.POST.get('pwd'):
                 obj.password=password
             obj.birth=birth
             obj.gender=gender
             obj.email=email
             if request.POST.get('choice'):
-                id=obj.id
                 choice = int(request.POST.get('choice'))
-                new_obj=models.user_now.objects.get(uid=id)
-                new_obj.choice_id=choice
-                new_obj.save()
+                obj_user_now.choice_id=choice
+                obj_weekly_info.choice_id=choice
+                obj_user_now.save()
+                obj_weekly_info.save()
                 obj.choice_id=choice
             obj.save()
+            obj_user_now.save()
+            obj_weekly_info.save()
             return redirect('/coach_student/')
     else:
         return redirect('/login.html')

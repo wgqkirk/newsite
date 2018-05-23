@@ -239,7 +239,7 @@
 						  		</thead>
 						  		<tbody>
                                     {% for i in user_list %}
-						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="number" value="{% if not i.week8 %}{% else %}{{ i.week8 }}{% endif %}">{% if i.week8 %}<span class="{{ i.week7|func2:i.week8 }}">{{ i.week7|func2:i.week8 }}</span>
+						  			<tr><td id="uid" hidden><input type="text" name="uid" value="{{ i.uid }}" hidden></td><td id="username"><input type="text" name="username" value="{{ i.username }}" readonly></td><td id="weight"><input style="width: 60%" type="number" value="{% if not i.week8 %}{% else %}{{ i.week8 }}{% endif %}">{% if i.week8 %}<span class="{{ i.week7|func3:i.week8 }}">{{ i.week7|func2:i.week8 }}</span>
                                         {% endif %}</td><td id="beizhu"><input type="text" name="beizhu" value="{% if  not i.week8_suggest %}{% else %}{{ i.week8_suggest }}{% endif %}">
                                     </td></tr>
                                     {% endfor %}
