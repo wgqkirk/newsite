@@ -31,9 +31,9 @@ def time(request):
     t = datetime.datetime.now()
 
 def page_not_found(request):
-    return render(request,'error404.html')
+    return render(request, 'error404.html')
 
-    return render(request,'time.html',{'ctime':t})
+    return render(request, 'time.html', {'ctime':t})
 def signout(request):
     del request.session['username']
     return redirect('/login.html')
@@ -117,7 +117,7 @@ def student_edit(request):
         if request.method=='GET':
             userset=models.userinfo.objects.get(username=pageusername,)
             item_set = models.item.objects.all()
-            return render(request,'student_edit.html',locals())
+            return render(request, 'student_edit.html', locals())
         elif request.method=='POST':
             uid=request.POST.get('id')
             username = request.POST.get('username')
@@ -252,7 +252,7 @@ def admin_coach_edit(request):
             print(uid)
             info=models.coach.objects.get(uid=uid,)
             item_set = models.item.objects.all()
-            return render(request,'admin_coach_edit.html',locals())
+            return render(request, 'admin_coach_edit.html', locals())
         elif request.method=='POST':
             uid=request.POST.get('uid')
             username = request.POST.get('username')
@@ -386,7 +386,7 @@ def coach_student_edit(request):
             print(uid)
             info=models.userinfo.objects.get(uid=uid,)
             item_set = models.item.objects.all()
-            return render(request,'coach_student_edit.html',locals())
+            return render(request, 'coach_student_edit.html', locals())
         elif request.method=='POST':
             uid=request.POST.get('uid')
             username = request.POST.get('username')
@@ -440,6 +440,15 @@ def single_chart(request):
 
         #去除list里的None值,使其转成weight
         userweight=make_weight_list(userweight)
+        colorlist=['#DC143C','#800080','#483D8B','#000080','#00BFFF','#00FFFF','#00FA9A','#006400','#FFFAF0']
+        pielist=[]
+        weight_now=userweight[-1]
+        for i in range(len(userweight)):
+            if i <len(userweight)-1:
+                item={'num':i+1,'loseweight':userweight[i]-userweight[i+1],'weeknum':'第%s周'%(i+1),'color_16':colorlist[i]}
+                pielist.append(item)
+        print(pielist,weight_now)
+
         max_weight=max(userweight)
         min_weight=min(userweight)
 
@@ -447,7 +456,10 @@ def single_chart(request):
         userbmi=make_bmi(userheight,userweight)
         max_bmi=max(userbmi)
         min_bmi=min(userbmi)
-        return render(request,'single_chart.html',locals())
+
+
+
+        return render(request, 'single_chart.html', locals())
     else:
         return redirect('/login.html')
 
@@ -455,7 +467,7 @@ def single_chart(request):
 def coach_search_student(request):
     pageusername = request.session.get('username')
     if pageusername:
-        return render(request,'coach_search_student.html',locals())
+        return render(request, 'coach_search_student.html', locals())
     else:
         return redirect('/login.html')
 
@@ -490,7 +502,7 @@ def coach_search_result(request):
 
         print(user_list)
 
-        return render(request,'coach_search_result.html',locals())
+        return render(request, 'coach_search_result.html', locals())
 
     else:
         return redirect('/login.html')
@@ -640,7 +652,7 @@ def user(request):
             page=obj.page_str()
             query_set = models.userinfo.objects.all()[obj.db_start():obj.db_end()]
 
-            return render(request,'user.html',locals())
+            return render(request, 'user.html', locals())
     else:
         return redirect('/login.html')
 
@@ -655,7 +667,7 @@ def userdelete(request):
 def usersearch(request):
     username = request.session.get('username')
     if username:
-        return render(request,'usersearch.html',locals())
+        return render(request, 'usersearch.html', locals())
     else:
         return redirect('/login.html')
 def usersearchresult(request):
@@ -722,7 +734,7 @@ def usersearchresult(request):
 
         if len(query_set)==0:
             flag=True
-        return render(request,'usersearchresult.html',locals())
+        return render(request, 'usersearchresult.html', locals())
 
     else:
         return redirect('/login.html')
@@ -748,7 +760,7 @@ def useredit(request):
             userid = request.GET.get('userid', None)
             print(userid)
             info=models.userinfo.objects.get(id=userid,)
-            return render(request,'useredit.html',locals())
+            return render(request, 'useredit.html', locals())
         else:
             userid=request.POST.get('userid')
             username = request.POST.get('username')
@@ -791,7 +803,7 @@ def system(request):
         coach = False
         comuser = False
     if username:
-        return render(request, 'system.html',locals())
+        return render(request, 'system.html', locals())
     else:
         return redirect('/login.html')
 def coach(request):
@@ -811,7 +823,7 @@ def coach(request):
         coach = False
         comuser = False
     if username:
-        return render(request, 'coach.html',locals())
+        return render(request, 'coach.html', locals())
     else:
         return redirect('/login.html')
 user_list=[]
@@ -915,7 +927,7 @@ def register(req):
             else:
                 return HttpResponse('2')
     item_set = models.item.objects.all()
-    return render(req,'register.html',locals())
+    return render(req, 'register.html', locals())
 
 def registeraction(req):
     if req.method=='POST':
@@ -959,15 +971,15 @@ def registeraction(req):
             oo= obj
             item_set = models.item.objects.all()
         #   print(list(errorinfo['username'][0])[0])
-            return render(req,'register.html',locals())
+            return render(req, 'register.html', locals())
 
 
 import os
 def mysetting(request):
     if request.method=='GET':
-        return render(request,'mysetting.html')
+        return render(request, 'mysetting.html')
     elif request.method=='POST':
-        return render(request,'mysetting.html')
+        return render(request, 'mysetting.html')
 
 def imgtest(request):
     if request.method=='POST':
@@ -986,7 +998,7 @@ def imgtest(request):
     elif request.method=='GET':
         imglist=models.testimgsrc.objects.values('path')
         # print(imglist)
-        return render(request, 'imgtest.html',{'imglist':imglist})
+        return render(request, 'imgtest.html', {'imglist':imglist})
 
 def imgtestajax(request):
     if request.method=='POST':
@@ -1007,7 +1019,7 @@ def imgtestajax(request):
     elif request.method=='GET':
         imglist=models.testimgsrc.objects.values('path')
         # print(imglist)
-        return render(request, 'imgtestajax.html',{'imglist':imglist})
+        return render(request, 'imgtestajax.html', {'imglist':imglist})
 
 def test(req):
     uid=req.POST.get('userid')
@@ -1024,12 +1036,12 @@ def test(req):
     #
     #     print(info)
     #     models.weekly_info.objects.create(**info)
-    return render(req,'test.html')
+    return render(req, 'test.html')
 
 def base(req):
-    return render(req,'base.html')
+    return render(req, 'base.html')
 def ajax(req):
-    return render(req,'ajaxtest.html')
+    return render(req, 'ajaxtest.html')
 def reajax(req):
     if req.method=='POST':
         print(req.POST.get('username'))
@@ -1037,6 +1049,6 @@ def reajax(req):
         return HttpResponse('用户名或密码错误了')
     return HttpResponse('用户名.....')
 def jsonp(request):
-    return render(request,'jsonp.html')
+    return render(request, 'jsonp.html')
 def logtest(request):
-    return render(request,'logtest.html')
+    return render(request, 'logtest.html')

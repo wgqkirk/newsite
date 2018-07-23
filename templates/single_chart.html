@@ -74,8 +74,26 @@
     			</div>
 
             </div>
-        </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">减肥占比</div>
+                            <div class="panel-body">
+                                <canvas id="canvas" class="col-md-2"></canvas>
+                                <div id="legend0">
+                                <ul class="pie-legend">
+                                    {% for i in pielist %}
 
+                                    <li><span style="background-color:{{ i.color_16 }}">{{ i.weeknum }}减重体重</span></li>
+                                    {% endfor %}
+                                    <li><span style="background-color:#D1F2A5">现在体重</span></li>
+                                </ul>
+                                </div>
+
+                            </div>
+
+                    </div>
+                </div>
+        </div>
   </body>
    <section id="footer">
        	<div class="container">
@@ -168,7 +186,26 @@ window.onload = function() {
         scaleStartValue: ({{ min_bmi }}-5),
         bezierCurve:false
     });
+
 }
 
 </script>
+<script>
+
+    var pieChart = [
+        {% for i in pielist %}
+                    {value: {{ i.loseweight }}, color: '{{ i.color_16 }}',label:'{{ i.weeknum }}减重体重'},
+        {% endfor %}
+                    {value: {{ weight_now }}, color: '#D1F2A5',label:'现在体重'},
+        ];
+
+    $(function(){
+    var ctx1 = document.getElementById("canvas").getContext("2d");
+    window.myPie = new Chart(ctx1).Pie(pieChart,{
+    responsive:true
+    });
+    })
+
+</script>
+
 </html>
