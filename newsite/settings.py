@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'django',
         'USER':'root',
         'PASSWORD': '123456',
-        'HOST':'127.0.0.1',
+        'HOST':'45.76.102.123',
     }
 }
 
@@ -130,8 +130,9 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(HERE, 'static/'),
+    os.path.join(HERE, 'static'),
 )
+print(STATICFILES_DIRS)
 # LOGGING = {
 #     'version': 1,
 #     'disable_existing_loggers': False,

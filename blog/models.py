@@ -38,7 +38,7 @@ class coach(models.Model):
     tel = models.CharField(max_length=11)
     gender=models.CharField(max_length=10)
     birth=models.DateField(max_length=10)
-    charge_id=models.ForeignKey(item,null=False)
+    charge=models.ForeignKey(item,null=False)
     registerdate=models.DateField(max_length=255)
     def __str__(self):
         return self.username
